@@ -1,9 +1,12 @@
-$ScriptBlock = {
-    param($supposedToBeDashDashTarget, $commandAst, $wordToComplete);
+$__terraformTargetCompleterBlock = {
+    param($supposedToBeDashDashTarget, $commandAst, $cursorPosition);
+    $cmdElements = $commandAst.CommandElements;
 
-    if ($commandAst.CommandElements[2].Value -eq '--target' || $commandAst.CommandElements[2].Value -eq '-target') {
-        $filter = $commandAst.CommandElements[3].Value;
-        if ($filter -eq "") {
+    
+    $currentLength = $cmdElements[0].Value.Length + $cmdElements[1].Value.Length + $cmdElements[2].Value.Length + 2
+    if ($cmdElements[2].Value -EQ '--target' -OR $cmdElements[2].Value -EQ '-target' -AND $cursorPosition -EQ $currentLength+1) {
+        $filter = $cmdElements[3].Value;
+        if ($filter -EQ "") {
             $filter = "*";
         }
         else {
@@ -24,4 +27,4 @@ $ScriptBlock = {
     }
 }
 
-Register-ArgumentCompleter -Native -CommandName 'terraform' -ScriptBlock $ScriptBlock;
+Register-ArgumentCompleter -Native -CommandName 'terraform' -ScriptBlock $__terraformTargetCompleterBlock;
