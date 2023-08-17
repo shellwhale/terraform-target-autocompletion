@@ -1,16 +1,13 @@
 # terraform-target-autocomplete
----
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 Press <kbd>tab</kbd> after `--target` and get autocomplete suggestions for your resources and modules.
 
 ## Requirements
----
 `terraform-target-autocomplete` is a Go program that rely on [terraform-config-inspect](https://github.com/hashicorp/terraform-config-inspect) for the heavy lifting.
 So it should work with any Terraform version. You don't need anything else than the binary and the completion scripts provided. But currently you'll need Go 1.21.0 installed to build it yourself.
 
 ## Installation
----
 ### PowerShell
 First you have to install the binary
 ```pwsh
