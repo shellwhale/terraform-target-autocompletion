@@ -1,5 +1,7 @@
-# terraform-target-autocompletion
+# terraform-target-autocompletion 🎯💨
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://img.shields.io/badge/PowerShell-blue)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://img.shields.io/badge/Bash-blue)
 
 Press <kbd>tab</kbd> after `--target` and get autocomplete suggestions for your resources and modules.
 
