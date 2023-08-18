@@ -3,6 +3,8 @@
 
 Press <kbd>tab</kbd> after `--target` and get autocomplete suggestions for your resources and modules.
 
+![Demo GIF](./docs/assets/demo.gif)
+
 ## Requirements
 `terraform-target-autocompletion` is a Go program that rely on [terraform-config-inspect](https://github.com/hashicorp/terraform-config-inspect) for the heavy lifting.
 So it should work with any Terraform version. You don't need anything else than the binary and the completion scripts provided. But currently you'll need Go 1.21.0 installed to build it yourself.
@@ -20,9 +22,11 @@ $__terraformTargetCompleterBlock = {
     param($supposedToBeDashDashTarget, $commandAst, $cursorPosition);
     $cmdElements = $commandAst.CommandElements;
 
-    
     $currentLength = $cmdElements[0].Value.Length + $cmdElements[1].Value.Length + $cmdElements[2].Value.Length + 2
-    if ($cmdElements[2].Value -EQ '--target' -OR $cmdElements[2].Value -EQ '-target' -AND $cursorPosition -EQ $currentLength+1) {
+    $lengthAfterSearchString = $currentLength + $cmdElements[3].Value.Length + 2
+    $targetWordLocation = $cmdElements[2].Value;
+
+    if ($targetWordLocation -EQ '--target' -OR $targetWordLocation -EQ '-target' -AND $cursorPosition -GT $currentLength -AND $cursorPosition -LE $lengthAfterSearchString) {
         $filter = $cmdElements[3].Value;
         if ($filter -EQ "") {
             $filter = "*";
